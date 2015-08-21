@@ -1,0 +1,52 @@
+<!doctype html>
+<html class="no-js">
+  	<head>
+	    <meta charset="utf-8">
+	    <title>Timer</title>
+	    <meta name="description" content="">
+	    <meta name="viewport" content="width=device-width">
+		
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	    <link rel="stylesheet" href="style.css">
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	    <script src="bootstrap.min.js"></script>
+	    <script src="timer.js"></script>
+ 	</head>
+  	<body>
+  		<div class="container-fluid">
+	  		<div id="timerEntriesDiv" style="margin: 10% 15%;" class="row">
+	  			<div class="col-md-3">
+		  			<div class="form-group">
+					    <label for="hours">Start Time (sec):</label>
+					    <input type="number" class="form-control" id="startTime">
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+					    <label for="minutes">Rounds:</label>
+					    <input type="number" class="form-control" id="rounds">
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+					    <label for="seconds">Rest Between Rounds:</label>
+					    <input type="number" class="form-control" id="restPeriod">
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label for="btnRow">Play/Pause</label>
+						<div class="btn-group" id="btnRow">
+						    <button type="button" id="playBtn" class="btn btn-primary btn-md" onclick="setTimer();"><span class="glyphicon glyphicon-play"/></button>
+						    <button type="button" id="pauseBtn" class="btn btn-primary btn-md" onclick="pauseTimer(false);"><span class="glyphicon glyphicon-pause"/></button>
+						    <button type="button" id="stopBtn" class="btn btn-primary btn-md" onclick="pauseTimer(true);"><span class="glyphicon glyphicon-stop"/></button>
+						</div>
+					</div>
+				</div>
+	  		</div>
+	  		<div id="timerDiv">
+	  			00 : 00 : <span id="seconds">00</span>
+	  		</div>
+	  	</div>
+	</body>
+</html>

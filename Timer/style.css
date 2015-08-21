@@ -1,0 +1,13 @@
+body {
+	margin: 0px;
+	padding: 100px;
+	background-color: #000;
+}
+
+#timerDiv {
+	width: 100%;
+	color: #FFF;
+	font-size: 350%;
+	text-align: center;
+}
+

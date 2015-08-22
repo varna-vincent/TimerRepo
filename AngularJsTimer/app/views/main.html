@@ -1,39 +1,57 @@
 <div class="viewContainer">
-  <h1>Timer is <span ng-show="!timerRunning"> not running!</span><span ng-show="timerRunning">ticking....</span></h1>
+  <h1>Timer is <span ng-show="!onRest"> taking rest...</span> <span ng-show="!timerRunning && onRest"> not running!</span><span ng-show="timerRunning && onRest">ticking....</span></h1>
   <div class="timerDiv row">
-    <div class="col-md-4"><a class="btn btn-lg btn-primary disabled timer"><span class="timeSpan" ng-model="hourTime">00</span> <span class="unitclass">hrs</span></a></div>
-    <div class="col-md-4"><a class="btn btn-lg btn-success disabled timer"><span class="timeSpan" ng-model="minTime">00</span> <span class="unitclass">min</span></a></div>
-    <div class="col-md-4"><a class="btn btn-lg btn-info disabled timer"><span class="timeSpan" ng-model="secTime">00</span> <span class="unitclass">sec</span></a></div>
+    <div class="col-md-4"><a class="btn btn-lg btn-primary disabled timer"><span class="timeSpan" ng-bind="hourTime">00</span> <span class="unitclass">hrs</span></a></div>
+    <div class="col-md-4"><a class="btn btn-lg btn-success disabled timer"><span class="timeSpan" ng-bind="minTime">00</span> <span class="unitclass">min</span></a></div>
+    <div class="col-md-4"><a class="btn btn-lg btn-info disabled timer"><span class="timeSpan" ng-bind="secTime">00</span> <span class="unitclass">sec</span></a></div>
   </div>  
 </div>
 
 <div class="row marketing">
   <div id="timerEntriesDiv" class="row">
-    <div class="col-md-3">
+    <div class="col-md-4">
       <div class="form-group">
-        <label for="hours">Start Time (sec):</label>
-        <input type="number" class="form-control" value="0" ng-model="startTime">
+        <label for="hours">Start Time (Unit):</label>
+        <div class="row">
+          <div class="col-md-6" style="padding:0px 4px; margin-left:11px;">
+            <input type="number" class="form-control" ng-model="startTime" ng-pattern="onlyNumbers" min="0">
+          </div>
+          <div class="col-md-5" style="padding:0px;">
+            <select ng-model="selectedStartTimeUnit" class="form-control">
+              <option ng-repeat="option in options" value="{{option.value}}" ng-selected="option.value == 2">{{option.text}}</option>
+            </select>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-2">
       <div class="form-group">
           <label for="minutes">Rounds:</label>
-          <input type="number" class="form-control" value="0" ng-model="rounds">
+          <input type="number" class="form-control" value="0" ng-model="rounds" ng-pattern="onlyNumbers" min="0">
       </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-4">
       <div class="form-group">
-          <label for="seconds">Rest Period (sec):</label>
-          <input type="number" class="form-control" value="0" ng-model="restPeriod">
+          <label for="seconds">Rest Period (Unit):</label>
+          <div class="row">
+            <div class="col-md-6" style="padding:0px 4px; margin-left:11px;">
+              <input type="number"  min="0" class="form-control" ng-model="restPeriod" ng-pattern="onlyNumbers">
+            </div>
+            <div class="col-md-5" style="padding:0px;">
+              <select ng-model="selectedRestPeriodUnit" class="form-control">
+                <option ng-repeat="option in options" value="{{option.value}}" ng-selected="option.value == 2">{{option.text}}</option>
+              </select>
+            </div>
+          </div>
       </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-2">
       <div class="form-group">
-        <label for="btnRow">Play/Stop</label>
+        <label for="btnRow">Run / Stop</label>
         <div class="row">
-            <button type="button" ng-model="playBtn" class="btn btn-primary btn-md col-md-4" ng-show="!timerRunning" onclick="setTimer();"><span class="glyphicon glyphicon-play"/></button>
-            <button type="button" ng-model="pauseBtn" class="btn btn-primary btn-md col-md-4" ng-show="timerRunning" onclick="pauseTimer(false);"><span class="glyphicon glyphicon-pause"/></button>
-            <button type="button" ng-model="stopBtn" class="btn btn-primary btn-md col-md-4" style="margin-left:5px;" onclick="pauseTimer(true);"><span class="glyphicon glyphicon-stop"/></button>
+            <button type="button" ng-model="playBtn" class="btn btn-primary btn-md col-md-4" style="margin-left:15px;" ng-show="!timerRunning" ng-click="startTimer();"><span class="glyphicon glyphicon-play"/></button>
+            <button type="button" ng-model="pauseBtn" class="btn btn-primary btn-md col-md-4" style="margin-left:15px;" ng-show="timerRunning" ng-click="pauseTimer(false);"><span class="glyphicon glyphicon-pause"/></button>
+            <button type="button" ng-model="stopBtn" class="btn btn-primary btn-md col-md-4" style="margin-left:5px;" ng-click="pauseTimer(true);"><span class="glyphicon glyphicon-stop"/></button>
         </div>
       </div>
     </div>
